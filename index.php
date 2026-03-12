@@ -31,8 +31,20 @@ cards.forEach(card => {
     card.style.backgroundImage = isFlipped 
       ? "url('assets/naipe.jpg')" 
       : "url('assets/"+card.dataset.background+"')";
+
+    flippedCards = document.querySelectorAll('[data-flipped="true"]');
+    if(flippedCards.length == 2 && matchFlippedCards(flippedCards)) {
+        flippedCards[0].style.pointerEvents = 'none';
+        flippedCards[1].style.pointerEvents = 'none';
+    }
   });
 });
+
+
+
+function matchFlippedCards(flippedCards) {
+  return flippedCards[0].dataset.background == flippedCards[1].dataset.background;
+}
 
 let seconds = 0;
 
